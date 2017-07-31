@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CHS</title>
+</head>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"></script>
+
+<script src="chsapp.js"></script>
+<link rel="stylesheet" href="chsapp.css"></script>
+
+<script src="Home/homeController.js"></script>
+<script src="Register/registerController.js"></script>
+<script src="Login/loginController.js"></script>
+<script src="Login/loginService.js"></script>
+<script src="Conversation/cnvOverviewController.js"></script>
+<script src="ui-routes.js"></script>
+<script src="Util/notifyDlg.js"></script>
+<script src="Conversation/myCnvOverviewController.js"></script>
+<script src="Conversation/cnvDetailController.js"></script>
+
+<body ng-app="mainApp">
+   <nav class="navbar navbar-default height-down" ng-controller="indexController">
+      <ul class="nav navbar-nav left">
+         <li class="left-side" ng-if="!user" ui-sref-active="home">
+            <a ui-sref="login">Login</a>
+         </li>
+         <li ng-if="!user">
+            <a ui-sref="register">Register</a>
+         </li>
+         <li ng-if="!!user">
+            <a ui-sref="cnvOverview">All Conversations</a>
+         </li>
+         <li ng-if="!!user">
+            <a ui-sref="myCnvs({ownerId: user.id})">My Conversations</a>
+         </li>
+      </ul>
+      <ul class="nav navbar pull-right">
+         <li class="navbar-text top nonBlue" ng-if="!!user">
+            <a ng-click="logout()">Logout</a>
+         </li>
+         <li class="navbar-text" ng-if="!!user">
+            {{user.firstName + " " + user.lastName}}
+         </li>
+         <li class="navbar-text">
+            <span uib-dropdown>
+               <a uib-dropdown-toggle>{{lang}}</a>
+               <ul uib-dropdown-menu>
+                  <li ng-repeat="lang in langs">
+                     <a ng-click="chooseLang($index)">{{lang}}</a>
+                  </li>
+               </ul>
+            </span>
+         </li>
+      </ul>
+   </nav>
+   <ui-view/>
+</body>
+</html>

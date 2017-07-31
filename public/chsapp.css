@@ -1,0 +1,25 @@
+.msg-header {
+   clear: both;
+   background-color: #EEF;
+}
+.height-down{
+    height:55px !important; 
+    min-height:50px !important;
+}
+.top {
+  top: -9px;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+  color: #333;
+  background-color: transparent;
+}
+.nav > li > a {
+	padding-right: 0px;
+	color: #777;
+}
+.left {
+	
+}
+ul.left li {
+	margin-right: 15px;
+}
